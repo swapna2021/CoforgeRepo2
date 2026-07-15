@@ -15,8 +15,23 @@ public class CustomerService {
 	CustomerDao dao;
 	
 	public List<Customer> getAllCustomers() {
-		
 		return dao.getAllCustomers();
+	}
+	
+	public int addCustomer(Customer customer) {
+		return dao.addCustomer(customer);
+	}
+
+	public Customer getCustomerById(long cid) {
+		return dao.getCustomerById(cid);
+	}
+	
+	public int updateCustomer(Customer customer) {
+		return dao.updateCusotmer(customer);
+	}
+	public int deleteCustomer(long cid)
+	{
+		return dao.deleteCustomer(cid);
 	}
 
 }
