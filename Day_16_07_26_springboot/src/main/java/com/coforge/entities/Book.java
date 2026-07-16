@@ -26,11 +26,11 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bookId;
-	//@Column(name="firstTitle")
+	
 	@Size(min=3,message = "title can't be less than 3 chars")
 	@NotBlank
 	private String title;
-	//@Column(name="authorName")
+	
 	@NotBlank
 	private String author;//findByAuthor(), getByAuthor()
 	@Pattern(regexp = "^[6789][0-9]{9}$", message="Mobile number must start with either "
