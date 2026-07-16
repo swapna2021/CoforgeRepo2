@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-//@Table(name="booktable")
+
 public class Book { 
-	//minimal annotations required to create a table are 2, @Entity,@Id
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
