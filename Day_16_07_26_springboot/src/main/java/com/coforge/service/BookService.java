@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.coforge.dao.BookDao;
 import com.coforge.entities.Book;
+import com.coforge.exceptions.BookNotFoundException;
 
 @Service
 public class BookService {
@@ -23,13 +24,15 @@ public class BookService {
 		return dao.addBook(book);
 	}
 	public Book getBookById(long id) {
-		return dao.getBookById(id);
+		return dao.getBookById(id)
+			.orElseThrow(()->new BookNotFoundException("Book with this id not exists"));
 	}
 
 	public Book updateBook(Long id, Book book) {
 		
-		Book exBook=dao.getBookById(id);
-		if(exBook!=null) {
+		Book exBook=dao.getBookById(id)
+				.orElseThrow(()->new BookNotFoundException("Book with this id not exists"));
+		
 			if(book.getTitle()!=null)
 			exBook.setTitle(book.getTitle());
 			if(book.getAuthor()!=null)
@@ -37,16 +40,17 @@ public class BookService {
 			if(book.getPrice()!=null)
 			exBook.setPrice(book.getPrice());
 			return dao.addBook(exBook);
-		}
-		else {
-			return null;
-		}
-		
 	}
 
 	public void deleteBook(Long id) {
-		 dao.deleteBook(id);
-		
+		Book exBook=dao.getBookById(id)
+				.orElseThrow(()->new BookNotFoundException("Book with this id not exists"));
+		dao.deleteBook(id);
+	}
+	
+	
+	public List<Book> findByAuthor(String author){
+		return dao.findByAuthor(author);
 	}
 
 }
