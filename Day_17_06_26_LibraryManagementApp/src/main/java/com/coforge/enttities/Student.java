@@ -2,6 +2,8 @@ package com.coforge.enttities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,10 @@ public class Student {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="addressId",referencedColumnName = "addrId")
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "student")
+	@JsonManagedReference
+	private LibraryCard libraryCard;
 	
 
 }
